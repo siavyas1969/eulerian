@@ -1,14 +1,23 @@
 def eulerian(n, m): 
-    if (m >= n or n == 0): 
-        return 0; 
+    dp = [[0 for x in range(m+1)]  
+             for y in range(n+1)]  
   
-    if (m == 0): 
-        return 1; 
+    for i in range(1, n+1): 
   
-    return ((n - m) * eulerian(n - 1, m - 1) +
-            (m + 1) * eulerian(n - 1, m)) 
+        for j in range(0, m+1): 
   
-# Driver code 
+            if (i > j): 
+  
+                if (j == 0): 
+                    dp[i][j] = 1
+  
+                else : 
+                    dp[i][j] = (((i - j) * 
+                       dp[i - 1][j - 1]) + 
+                       ((j + 1) * dp[i - 1][j])) 
+                      
+    return dp[n][m] 
+  
 n = 3
 m = 1
-print( eulerian(n, m) ) 
+print(eulerian(n, m)) 
